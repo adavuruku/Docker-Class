@@ -1,0 +1,89 @@
+Images -> Application
+When you run a command to run a docker image -> if the image doesnot exist in your local directory, the docker will connect to a docker Hub to look for the image, if the image exist it download the image to your local machine and execute on your local machine.
+
+so next time you try to run the image it use the one from your computer
+
+Namespacing : allocating different resource on a computer to serve difference process request from a program
+
+
+Container:
+    CONTAINER is a process or set of process that has a grouping of resources asign to it.
+    example -> asigning a specific poertion of your hard drive to run a nodejs app.
+
+An image is the program and the definition of the physical resources require to run the program.
+
+once the program (deployed) is deployed it becomes a container with all the physical resources applied.
+
+command
+    1 to run an image
+        docker run <name of the image>
+        . this will convert the image to  container and execute
+
+
+        And image can have different programs -> to run any of the program
+
+        docker run <name of the image> <the program to exceute>
+
+    2. docker ps -> show only the running process
+
+    3. docker ps --all -> show all the container (process) that has been run on the docker before (either still running or has stopped)
+
+
+docker run = docker creeate + docker start
+docker run execute two process docker create that convert the image to a container and docker start to start running the containerddo
+
+docker start -a 
+-a means give any output from the process
+
+4 . to delete docker container
+docker system prune -> will remove all the running container from the memory there by releasing the resources they'r using
+
+5. docker logs <the runing container Id> -> this will display all the logs of the runing container
+
+
+stopping and killling a container
+stopping:
+
+    sigterm -> use to short down a container but given it time to shotdown
+    (time interval of 10 secods)
+    docker stop <container id>
+
+    note if container refuse to stop then docker will fall back to use the kill command to terminate the container
+killing:
+
+    kill is use to stop the container immediately with no wait time
+    docker kill <container id>
+
+
+running another command in a container
+
+docker exec -it <container id> <the program to exceute>
+
+the difference between this docker run <name of the image> <the program to exceute> and  docker exec -it <container id> <the program to exceute>
+
+if the program to execute depend on the image you can use the second, otherwise use the first.
+
+like in reddis -> redis server must be running before you run reddis-cli -> so the cli must be run on a reddis server thats is dependent on the server
+because is a sub program or sub container of the server (main container)
+
+but docker run busybox ping can run fine without usinf the second because it is not a dependent process (container) on the main container rather is just a resource in the main container
+
+-i -> make sure my input goes to the stdin asign to my process
+-t -> make sure the output goes to the copy of my process
+
+-it allows docker assign the stuff we type on the terminal get assign to the copy of stdin of our process. and output to the stdout of our process
+
+
+############333
+Note every container you are running is running a linux virtual machine
+
+thats every container has its own copy of stdin, stdout, stderr
+
+##########
+docker exec -it <container id> sh
+to access copy of unix (dos) environment asign to a running container
+(to close the shel use ctrl D) or type exist
+
+# to use shell for your container instead of docker-cli you can start your container with 
+docker run -it busybox sh
+
