@@ -1,0 +1,25 @@
+restart/reschedule node, replicate node, monitor node,  
+Master node have completely different service that controls the worker node and clustres
+TO controls the worker state and clusters
+
+    1. API Server: is like a clustre gateway that gets the initial request into the clustre and also a gate keeper authentication, the api client is use to view the state of the k8s like ui, k8 dashboard, cmd tools, or k8 api.
+    whenever u want to create new pod, services, deploy new applications or any other component, you need to first reach the api server , it then validate the request and if its fine it'll forward request to other process. Also to query the healt u must pass tru api server
+
+    2. Scheduler: scheduler decide to which node is use to process your request by going thru all the worker node to see the one with available resources (calculation) to use for the request.
+    the node thats less busy and have higher resources available,
+    it then run the pod on the node.
+    Kublet get request from scheduler and the run the pod on the worker(node)
+
+    3. contoller manager: detect state changes (crashing) of pods 
+    pods die on any node
+    when a pod die or crash the controller notify the scheduler to restart the pod immediately it.
+    
+    4. etcd -> is a key value store og cluster state (clustre brain).
+    it keeps track of all the process in cluster. when a clustre die, when its restore, app deployment state, where does API server get it sate info etc
+
+    this where the controllers. API servers, schedulers all get all their information before taking actions
+
+    Note: etc doesnt store application data (database data, etc). it only stored clustered state information.
+     try to 
+
+     33:24

@@ -1,0 +1,15 @@
+In a cluster set up, you have
+
+2 Master nodes
+3 Worker node
+
+note the hardware resource (cpu, ram and storage) of Master and worker node differs
+
+
+Master processes are more important but they have less resources since worker node do all the processing
+
+if your application demands increases, you can add more master nodes
+or add more worker nodes to an exisiting Master nodes
+
+Master Node -> [one to many] -> Worker node -> [one to many] -> pods
+

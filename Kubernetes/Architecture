@@ -1,0 +1,16 @@
+1. Each nodes has many pods
+
+Worker Node: each node will have multiple pods of containers
+
+    the three process that needs to run (installed) on every worker node (kubernetics)
+
+    1. Container runtime : i.e docker etc [because k8s have containers running inside them they need a container environment]
+    2. Kublet: kubernetic own processor, it interacts with both container runtime and node.
+        it takes configuration and execute on the pods, it also start pods with a container inside
+        its like host runtime
+
+        k8 are made up of multiple nodes and this node have containers and kublets installed
+
+    3. Kube proxy: have intelligent of forwarding proxy. it manage the message forwarding in K8s.
+        for example if pod in same node is making a request to another pod in thesame node kube proxy alredy have an overheading forwarding configuration to direct the request to the pod withing the node and not a replica pod in another node
+

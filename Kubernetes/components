@@ -1,0 +1,70 @@
+case study -> my-app (javascript) pg-db
+
+K8 COMPONENTS
+
+###############################
+
+Node: physical or virtual machine
+
+###############################
+
+Pod: smallest unit of kubernetes (the application to run ) / in docker(container)
+(pod uses service/v network to communicates)
+pod is an abstraction (copy of container) ontop of container
+
+###############################
+
+virtual network -> every pod has its own Ip address
+(when a pod die and restart a new IP is created)
+
+###############################
+
+service: to avoid getting a new IP for every POD, service are used in place of the virtual IP
+even if a POD dies the service keeps its network and IP address.
+permanent Ip and is also a load balancer
+
+###############################
+
+External service: are service that opens the application to external services
+Internal service: are service to communicate internally withing the services
+
+###############################
+
+Ingres -> ingress hanlde the forward of request between the external services and internal services
+
+###############################
+
+ConfigMap: is the external configuration of your application [POD] (username, password,)
+It holds apps configuration such that a change in configuration wouldnt mean for one to redeploy the app
+
+###############################
+
+Secret: is like config map but its use to store secret data in base64 encoded format (username, password, certificate etc)
+
+###############################
+
+If pod is restarted all its data will be gone.
+(ee.g a daatabase pod once restart will create a new empty instance thereby loosing all its previous contents)
+to avoid this use
+
+Volumes ->it attaches a physical storage to a pod which could be on the node or remote outside k8 clustres
+Notes : the external storage are not manage by K8
+
+###############################
+
+Deployment: can be use to define how a Node can be replicated to run our application
+they're abstraction (copy of pods) ontop of pods
+its a pod blue prints
+Note: DB Pods cant be replicated because its stateful
+Deployment are only use to replicate stateless pod
+
+###############################
+
+StatefulSet: a deployment type use for stateful set like Database
+they can be use to replicate stateful pods
+it make sure db read and write are in sync through the replication
+
+Note: its advisable to only host stateles app in k8
+things like db should be host externally
+
+

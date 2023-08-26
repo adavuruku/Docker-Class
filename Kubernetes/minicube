@@ -1,0 +1,37 @@
+minicube is a local k8 set up for testing k8 locally before deployment
+its comes with a master and worker node (process), it also have docker container preinstall
+it create a virtual box in your machine and run in this box.
+
+minicube is a one k8 clustre that run on a vm in ur laptop
+
+##########################
+
+Kubectl: its use to interact with k8. its a cmd tool for kubernetes clustre
+
+there are different client to access k8 API servers -> UI, API and Kubectl
+
+but kubectl is the most powerful
+
+########################## installatiion
+
+brew intsall hyperkit
+
+brew install minikube 
+note: this install minikube, kubectl, docker
+
+
+########################## using minikube
+# to set up the minicube to use vm [ this will take time to complete]
+minikube start --vm-driver=hyperkit
+
+
+kubectl get nodes
+
+minicube status
+
+minicube command will only be use to manage the k8 clustre, check status, stop k8, start k8, delete k8s etc
+
+We shall use kubectl for every other k8 command after starting it up.
+
+
+

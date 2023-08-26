@@ -1,0 +1,11 @@
+docker windows time issue
+
+1. sudo apt-get update
+
+2. sudo apt-get install ntp
+
+3. sudo apt install ntpdate
+
+Now, whenever your clock is wrong, you need to run the following command:
+
+4. sudo ntpdate time.windows.com

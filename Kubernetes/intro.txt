@@ -1,0 +1,7 @@
+REFERENCES
+https://www.youtube.com/watch?v=X48VuDVv0do
+
+container ochestration -> manage application that are made up of thousand container
+
+High availability, Scalability (high performance)
+Disaster recovery -> 

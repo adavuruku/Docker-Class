@@ -1,0 +1,55 @@
+kubectl get nodes -> get all available nodes in k8 cluster
+
+kubectl get pod -> get all available pods in k8 cluster
+
+kubectl get services -> get all available services in k8 cluster
+
+kubectl create deployment NAME --image=image [--dry-run] [options]
+
+Note: in k8 to create pod you use a deployment { all the settings required to create the pod is define}
+
+kubectl create deployment nginx-depl --image=nginx
+
+this create a pod for nginx with this info [note u can add more options e.g replica etc]
+name: nginx-depl, image: nginx, 
+the rest are default values e.g replicas: 1
+
+u can use kubectl get deployment to view this
+also [kubectl get pod] to see the new pod created from the 
+
+example of deployment file 
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: <Image>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: <Port>
+
+
+kubectl edit deployment [deployment name]
+
+kubectl logs [deployment name]
+kubectl describe pod [pod name]
+
+kubectl exec -it [pod name] -- bin/bash [ to access the terminal of a pod terminal]
+
+to delete a pod 
+you have to delete the deployment
+kubectl delete deploymeny [deployment name]
