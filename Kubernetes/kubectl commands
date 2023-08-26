@@ -23,10 +23,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myapp
+  --- specification for deployment starts
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: myapp
+  --- specification for pod starts [blue print to create pod]
   template:
     metadata:
       labels:
@@ -53,3 +56,10 @@ kubectl exec -it [pod name] -- bin/bash [ to access the terminal of a pod termin
 to delete a pod 
 you have to delete the deployment
 kubectl delete deploymeny [deployment name]
+
+kubectl apply -f [name of the config file you have set up] [config file is a .yaml file]
+
+kubectl get deployment [deployment-name] -o yaml # to get yaml configuration from etcd file : this contain the config and extra default configuration u didnt set in your deployment file
+
+#to save it into a file
+kubectl get deployment [deployment-name] -o yaml > [file name].yaml
