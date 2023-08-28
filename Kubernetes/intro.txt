@@ -1,6 +1,8 @@
 REFERENCES
 https://www.youtube.com/watch?v=X48VuDVv0do
 
+https://kodekloud.com/blog/clusterip-nodeport-loadbalancer/#:~:text=ClusterIP%20is%20used%20for%20Pod,external%20clients%20outside%20the%20cluster.
+
 container ochestration -> manage application that are made up of thousand container
 
 High availability, Scalability (high performance)

@@ -87,10 +87,19 @@ kubectl rollout restart deployment posts-depl
 # load balancer provides a single point of endtry to all our services
 # get service into a single pods
 
+#to asign ip to ingress locally
 
+kubectl get ingress
+
+copy the IP in the network column and then do IP mapping
+example:
+[IP in network column] [host value in host column (the one you define in ingress deployment file)]
 # to do ip mapping on localhost
 c:\\windows\\system32\Drivers\etc\hosts -> windows
 
 /etc/hosts -> mac
+
+sudo vim /etc/hosts
+
 
 add -> 127.0.0.1 posts.com

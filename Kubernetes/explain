@@ -58,9 +58,11 @@ spec: #sppec of the deployment
 
 # services
 # types of services
-# 1. cluster ip -> communication between the pods in a clusters
+# 1. cluster ip -> communication between the pods in a clusters [default if type is not specified]
 # 2. node port-> made pod accessible outside the cluster (used for dev purposes)
-# Load balancer -> makes a pod accessible from outside the cluster. the right way to expose a pod to outside world
+# 3. Load balancer -> makes a pod accessible from outside the cluster. the right way to expose a pod to outside world (use for production purpose)
+# Note: in minicube to assign external IP to Load Balancer service execute
+# minicube service [service name]
 # 4. external name -> redirect an in cluster request to a cname url..
 
 apiVersion: v1 # version of service
@@ -76,6 +78,8 @@ spec: # specification
       protocol: TCP # network protocol
       port: 4000 # NodePort -> the port withing the cluster for this NodePort
       targetPort: 4000 # Appliction port note that it can be different from NodePort
+      nodePort: 3000 # the port external service will use to connect
 
 --- #indicate you want to add more config
 
+echo -n 'username' | base64

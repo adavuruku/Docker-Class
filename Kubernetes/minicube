@@ -33,5 +33,10 @@ minicube command will only be use to manage the k8 clustre, check status, stop k
 
 We shall use kubectl for every other k8 command after starting it up.
 
+To assign external IP to load balancer service in minicube
 
+minicube service [service name]
 
+to enable minikube dashboard
+
+minikube dashboard

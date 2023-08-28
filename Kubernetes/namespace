@@ -1,0 +1,48 @@
+A virtual clustre inside a k8 clustre
+its use to organise resources
+
+kubectl get namespaces
+or kubectl get ns
+
+k8-dashboard
+kube-syste - belond to kube
+
+kubect create namespace [namespace name]
+
+namespace are use to group your components
+
+use to organise resources for different team [every team can have their seperate namespace for deployment]
+
+Resource sharing among different development stage [Staging, development]
+
+kubectl api-resources --namespaced = false -> to list resources not attached to a namespace
+kubectl api-resources --namespaced = true -> to list resources attached to a namespace
+
+to install any components in a namespace use
+
+kubectl apply -f [name of components] --namespace=[name of namespace]
+
+or inside the configuration file
+kind: [component kind]
+metadata:
+    name: [deployment name]
+    namespace: [namespace name]
+
+
+to specify a default namespace to work on
+ install kubens
+
+ brew install kubectx
+  this will install kubens as well
+
+to see all available namespace
+kubens
+to select active namespace while executing kubectl command
+you can use 
+kubens [namespace name]
+
+with the above you dont have to append [ -n (namespace name)] which is use to define the namespace you want to use for kubectl command
+
+e.g kubectl apply -f mongo.yaml -n my-namespace
+
+but with kubens selecting default namespace -> you dont have to include this [-n my-namespace] in all your commands

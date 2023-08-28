@@ -63,3 +63,10 @@ kubectl get deployment [deployment-name] -o yaml # to get yaml configuration fro
 
 #to save it into a file
 kubectl get deployment [deployment-name] -o yaml > [file name].yaml
+
+
+kubectl apply -f [secret file name]
+
+kubectl get pod -o wide -> give complete details of a pod
+
+kubectl get all | greep [pod name]

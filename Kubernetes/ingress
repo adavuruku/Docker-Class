@@ -1,0 +1,131 @@
+2:02:05
+
+minikube addons enable ingress
+
+
+: you can then create an ingress yaml config file and deploy
+
+#to asign ip to ingress locally
+
+instead of using IP to get to ingress, you can use the host define in ingress fig to access ingress
+
+instean of typing 198.23.45.10 on the browser, you can type matters.well.com
+
+kubectl get ingress
+
+copy the IP in the network column and then do IP mapping
+example:
+[IP in network column] [host value in host column (the one you define in ingress deployment file)]
+
+198.23.45.10 matters.well.com
+
+# to do ip mapping on localhost
+c:\\windows\\system32\Drivers\etc\hosts -> windows
+
+/etc/hosts -> mac
+
+sudo vim /etc/hosts
+
+
+add -> 127.0.0.1 posts.com
+
+********************************
+
+exaple:  using different path of thesame host to point to seperate each node
+
+##########################################################
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  rules:
+    - host: posts.com
+      http:
+        paths:
+          - path: /posts/create
+            pathType: Prefix
+            backend:
+              service:
+                name: posts-clusterip-srv
+                port:
+                  number: 4000
+          - path: /posts
+            pathType: Prefix
+            backend:
+              service:
+                name: query-clusterip-srv
+                port:
+                  number: 4002
+          - path: /posts/?(.*)/comments
+            pathType: Prefix
+            backend:
+              service:
+                name: comments-clusterip-srv
+                port:
+                  number: 4001
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: client-clusterip-srv
+                port:
+                  number: 3000
+
+
+
+##########################################################
+
+example: using sub domains
+
+notice how different subdomains are use to map the node
+
+##########################################################
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  rules:
+    - host: posts.com
+      http:
+        paths:
+          - path: /posts/create
+            pathType: Prefix
+            backend:
+              service:
+                name: posts-clusterip-srv
+                port:
+                  number: 4000
+    - host: posts.all.com
+      http:
+        paths:
+            backend:
+              service:
+                name: posts-clusterip-srv
+                port:
+                  number: 4005
+    - host: comments.com
+      http:
+        paths:
+            backend:
+              service:
+                name: comments-clusterip-srv
+                port:
+                  number: 4001
+    - host: app-frontend.com
+      http:
+        paths:
+            backend:
+              service:
+                name: client-clusterip-srv
+                port:
+                  number: 3000
