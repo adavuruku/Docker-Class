@@ -1,0 +1,21 @@
+Note:
+kubectl get services 
+will have <pending> in the external IP columns
+
+to get the external ip to access our load balancer service: execute command
+
+minikube service mongo-express-service
+
+this will generate an external IP for us.
+
+example http://192.168.64.2:30000/ notice the port 30000 is the port we specify in our loadbalancer service nodeport property
+
+in real life production the host cloud will have a configured load balancer external IP address you can put here.
+
+how it works
+
+user make request using the external Ip of mongo-express [loadBalancer Service] at port 30000
+
+the request is then root to mongo-express throught it container port [8081]
+
+mongo-express through mongo service [27017] define in our mongo deployment  connects to MongoDB
