@@ -7,3 +7,5 @@ container ochestration -> manage application that are made up of thousand contai
 
 High availability, Scalability (high performance)
 Disaster recovery -> 
+
+Mini Project with K8: https://github.com/adavuruku/mini-blog-microservices
